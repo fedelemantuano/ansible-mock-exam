@@ -1,13 +1,13 @@
 Ansible Sample Exam for EX407
+=============================
 
 Requirements
+============
 
 You will need five RHEL 7 (or CentOS 7) virtual machines to be able to successfully complete all questions.
 One VM will be configured as an Ansible control node. Other four VMs will be used to apply playbooks to solve the sample exam questions. The following FQDNs will be used throughout the sample exam.
 
 Control and Managed Nodes:
-
-
 ansible-control.hl.local – Ansible control node
 ansible2.hl.local – managed host
 ansible3.hl.local – managed host
@@ -21,12 +21,13 @@ ansible5.hl.local server has a 1GB secondary /dev/sdb disk attached.
 There are no regular users created on any of the servers.
 
 Tips and Suggestions:
+=====================
 
 I tried to cover as many exam objectives as possible, however, note that there will be no questions related to dynamic inventory.
 Some questions may depend on the outcome of others. Please read all questions before proceeding.
-
-Sample Exam Questions:
 Note: you have root access to all five servers.
+
+============================== Questions ==============================
 
 Question 1:
 Ansible Installation and Configuration:
@@ -46,6 +47,8 @@ ansible3.hl.local is a member of the webservers host group.
 ansible4.hl.local is a member of the webservers host group.
 ansible5.hl.local is a member of the database host group.
 
+================================================================
+
 Question 2:
 Ad-Hoc Commands:
 
@@ -56,6 +59,7 @@ SSH key (that you generated) is copied to all inventory hosts for the automation
 The automation user is allowed to elevate privileges on all inventory hosts without having to provide a password.
 After running the adhoc script, you should be able to SSH into all inventory hosts using the automation user without password, as well as a run all privileged commands.
 
+================================================================
 
 Question 3: 
 File Content:
@@ -66,6 +70,8 @@ On hosts in the proxy host group the line should be “Welcome to HAProxy server
 On hosts in the webserver host group the line should be “Welcome to Apache server”.
 On hosts in the database host group the line should be “Welcome to MySQL server”.
 
+================================================================
+
 Question 4:
 Configure SSH Server:
 
@@ -73,6 +79,8 @@ Create a playbook /home/automation/plays/sshd.yml that runs on all inventory hos
 banner is set to /etc/motd
 X11Forwarding is disabled
 MaxAuthTries is set to 3
+
+================================================================
 
 Question 5:
 Ansible Vault:
@@ -82,6 +90,8 @@ Add the following variables to the vault:
 user_password with value of devops
 database_password with value of devops
 Store Ansible vault password in the file /home/automation/plays/vault_key.
+
+================================================================
 
 Question 6:
 Users and Groups:
@@ -107,12 +117,16 @@ Account passwords should use the SHA512 hash format.
 Each user should have an SSH key uploaded (use the SSH key that you created previously, see task #2).
 After running the playbook, users should be able to SSH into their respective servers without passwords.
 
+================================================================
+
 Question 7:
 Scheduled Tasks:
 
 Create a playbook /home/automation/plays/regular_tasks.yml that runs on servers in the proxy host group and does the following:
 A root crontab record is created that runs every hour.
 The cron job appends the file /var/log/time.log with the output from the date command.
+
+================================================================
 
 Question 8:
 Software Repositories:
@@ -125,6 +139,8 @@ Repository baseurl is http://repo.mysql.com/yum/mysql-5.6-community/el/7/x86_64/
 Repository GPG key is at http://repo.mysql.com/RPM-GPG-KEY-mysql.
 Repository GPG check is enabled.
 Repository is enabled.
+
+================================================================
 
 Question 9:
 Create and Work with Roles:
@@ -154,6 +170,8 @@ log-error=/var/log/mysqld.log
 pid-file=/var/run/mysqld/mysqld.pid
 Create a playbook /home/automation/plays/mysql.yml that uses the role and runs on hosts in the database host group.
 
+================================================================
+
 Question 10:
 Create and Work with Roles (Some More):
 
@@ -166,6 +184,8 @@ The address of the server is: IPV4ADDRESS
 IPV4ADDRESS is the IP address of the managed node.
 Create a playbook /home/automation/plays/apache.yml that uses the role and runs on hosts in the webservers host group.
 
+================================================================
+
 Question 11:
 Download Roles From an Ansible Galaxy and Use Them:
 
@@ -177,6 +197,8 @@ HAProxy backend servers should be configured for HTTP only (port 80).
 Firewall is configured to allow all incoming traffic on port TCP 80.
 If your playbook works, then doing “curl http://ansible2.hl.local/” should return output from the web server (see task #10). Running the command again should return output from the other web server.
 
+================================================================
+
 Question 12:
 Security:
 
@@ -184,6 +206,8 @@ Create a playbook /home/automation/plays/selinux.yml that runs on hosts in the w
 Uses the selinux RHEL system role.
 Enables httpd_can_network_connect SELinux boolean.
 The change must survive system reboot.
+
+================================================================
 
 Question 13:
 Use Conditionals to Control Play Execution:
@@ -193,6 +217,8 @@ If a server has more than 2048MB of RAM, then parameter vm.swappiness is set to 
 If a server has less than 2048MB of RAM, then the following error message is displayed:
 Server memory less than 2048MB
 
+================================================================
+
 Question 14:
 Use Archiving:
 
@@ -200,11 +226,15 @@ Create a playbook /home/automation/plays/archive.yml that runs on hosts in the d
 A file /mnt/mysql_backups/database_list.txt is created that contains the following line: dev,test,qa,prod.
 A gzip archive of the file /mnt/mysql_backups/database_list.txt is created and stored in /mnt/mysql_backups/archive.gz.
 
+================================================================
+
 Question 15:
 Work with Ansible Facts:
 
 Create a playbook /home/automation/plays/facts.yml that runs on hosts in the database host group and does the following:
 A custom Ansible fact server_role=mysql is created that can be retrieved from ansible_local.custom.sample_exam when using Ansible setup module.
+
+================================================================
 
 Question 16:
 Software Packages:
@@ -212,6 +242,8 @@ Software Packages:
 Create a playbook /home/automation/plays/packages.yml that runs on all inventory hosts and does the following:
 Installs tcpdump and mailx packages on hosts in the proxy host groups.
 Installs lsof and mailx and packages on hosts in the database host groups.
+
+================================================================
 
 Question 17:
 Services:
@@ -221,6 +253,8 @@ Sets the default boot target to multi-user.
 
 Question 18:
 Create and Use Templates to Create Customised Configuration Files:
+
+================================================================
 
 Create a playbook /home/automation/plays/server_list.yml that does the following:
 Playbook uses a Jinja2 template server_list.j2 to create a file /etc/server_list.txt on hosts in the database host group.
@@ -235,4 +269,6 @@ ansible4.hl.local
 ansible5.hl.local
 
 Note: if the FQDN of any inventory host changes, re-running the playbook should update the file with the new values.
+
+============================== End ==============================
 
