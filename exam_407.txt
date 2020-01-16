@@ -5,7 +5,10 @@ Requirements
 ============
 
 You will need five RHEL 7 (or CentOS 7) virtual machines to be able to successfully complete all questions.
-One VM will be configured as an Ansible control node. Other four VMs will be used to apply playbooks to solve the sample exam questions. The following FQDNs will be used throughout the sample exam.
+One VM will be configured as an Ansible control node. Other four VMs will be used to apply playbooks to solve 
+the sample exam questions. 
+
+The following FQDNs will be used throughout the sample exam.
 
 Control and Managed Nodes:
 ansible-control.hl.local – Ansible control node
@@ -23,8 +26,10 @@ There are no regular users created on any of the servers.
 Tips and Suggestions:
 =====================
 
-I tried to cover as many exam objectives as possible, however, note that there will be no questions related to dynamic inventory.
-Some questions may depend on the outcome of others. Please read all questions before proceeding.
+I tried to cover as many exam objectives as possible, however, note that there will be no questions 
+related to dynamic inventory. Some questions may depend on the outcome of others. Please read all questions 
+before proceeding.
+
 Note: you have root access to all five servers.
 
 ============================== Questions ==============================
@@ -34,9 +39,12 @@ Ansible Installation and Configuration:
 
 Install ansible package on the control node (including any dependencies) and configure the following:
 Create a regular user automation with the password of devops. Use this user for all sample exam tasks.
-All playbooks and other Ansible configuration that you create for this sample exam should be stored in /home/automation/plays.
+All playbooks and other Ansible configuration that you create for this sample exam should be 
+stored in /home/automation/plays.
 Create a configuration file /home/automation/plays/ansible.cfg to meet the following requirements:
-The roles path should include /home/automation/plays/roles, as well as any other path that may be required for the course of the sample exam.
+The roles path should include /home/automation/plays/roles, as well as any other path that may be required 
+for the course of the sample exam.
+
 The inventory file path is /home/automation/plays/inventory.
 Privilege escallation is disabled by default.
 Ansible should be able to manage 10 hosts at a single time.
@@ -55,9 +63,11 @@ Ad-Hoc Commands:
 Generate an SSH keypair on the control node. You can perform this step manually.
 Write a script /home/automation/plays/adhoc that uses Ansible ad-hoc commands to achieve the following:
 User automation is created on all inventory hosts.
-SSH key (that you generated) is copied to all inventory hosts for the automation user and stored in /home/automation/.ssh/authorized_keys.
+SSH key (that you generated) is copied to all inventory hosts for the automation user and 
+stored in /home/automation/.ssh/authorized_keys.
 The automation user is allowed to elevate privileges on all inventory hosts without having to provide a password.
-After running the adhoc script, you should be able to SSH into all inventory hosts using the automation user without password, as well as a run all privileged commands.
+After running the adhoc script, you should be able to SSH into all inventory hosts using the automation user without password, 
+as well as a run all privileged commands.
 
 ================================================================
 
@@ -108,9 +118,15 @@ users:
     uid: 2201
   - username: patrick
     uid: 2202
-Create a playbook /home/automation/plays/users.yml that uses the vault file /home/automation/plays/secret.yml to achieve the following:
-Users whose user ID starts with 1 should be created on servers in the webservers host group. User password should be used from the user_password variable.
-Users whose user ID starts with 2 should be created on servers in the database host group. User password should be used from the user_password variable.
+Create a playbook /home/automation/plays/users.yml that uses the vault file 
+/home/automation/plays/secret.yml to achieve the following:
+
+Users whose user ID starts with 1 should be created on servers in the webservers host group. 
+User password should be used from the user_password variable.
+
+Users whose user ID starts with 2 should be created on servers in the database host group. User password should be 
+used from the user_password variable.
+
 All users should be members of a supplementary group wheel.
 Shell should be set to /bin/bash for all users.
 Account passwords should use the SHA512 hash format.
@@ -195,7 +211,8 @@ Use geerlingguy.haproxy role to load balance request between hosts in the webser
 Use roundrobin load balancing method.
 HAProxy backend servers should be configured for HTTP only (port 80).
 Firewall is configured to allow all incoming traffic on port TCP 80.
-If your playbook works, then doing “curl http://ansible2.hl.local/” should return output from the web server (see task #10). Running the command again should return output from the other web server.
+If your playbook works, then doing “curl http://ansible2.hl.local/” should return output from the web server (see task #10). 
+Running the command again should return output from the other web server.
 
 ================================================================
 
