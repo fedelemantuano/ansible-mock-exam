@@ -12,10 +12,8 @@ Your *ansible-control-node* has complete passworless SSH access to your *ansible
 
 ```
 ansible-control.hl.local – Desktop/Laptop
-ansible2.hl.local – managed host (192.168.120.11)
-ansible3.hl.local – managed host (192.168.120.12)
-ansible4.hl.local – managed host (192.168.120.13)
-ansible5.hl.local – managed host (192.168.120.14)
+ansible2.hl.local – managed host (192.168.56.11)
+ansible3.hl.local – managed host (192.168.56.12)
+ansible4.hl.local – managed host (192.168.56.13)
+ansible5.hl.local – managed host (192.168.56.14)
 ```
-
-
