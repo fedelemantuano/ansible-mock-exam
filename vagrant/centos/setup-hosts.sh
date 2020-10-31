@@ -6,10 +6,10 @@ sed -e "s/^.*${HOSTNAME}.*/${ADDRESS} ${HOSTNAME} ${HOSTNAME}.local/" -i /etc/ho
 
 # Update /etc/hosts about other hosts
 cat >> /etc/hosts <<EOF
-192.168.120.11  ansible-1
-192.168.120.12  ansible-2
-192.168.120.13  ansible-3
-192.168.120.14  ansible-4
+192.168.56.11  ansible-1
+192.168.56.12  ansible-2
+192.168.56.13  ansible-3
+192.168.56.14  ansible-4
 EOF
 
 # install ansible package
