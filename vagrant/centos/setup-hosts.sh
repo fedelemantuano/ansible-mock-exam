@@ -12,8 +12,10 @@ cat >> /etc/hosts <<EOF
 192.168.56.14  ansible-4
 EOF
 
-# install ansible package
+# install epel repository
+yum install epel-release -y
 
+# install ansible package
 rpm --import /etc/pki/rpm-gpg/*
 sudo yum install ansible -y
 
